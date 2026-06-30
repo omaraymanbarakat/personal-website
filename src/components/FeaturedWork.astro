@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import WorkCard from './WorkCard.astro';
+
+const allWork = await getCollection('work');
+
+// Hand-picked per spec: Easykash Gate (Build), RentAll (Fix), Qasatly (Design)
+const featuredSlugs = ['easykash-gate', 'rentall-turnaround', 'qasatly-credit-scoring'];
+const featured = featuredSlugs
+  .map((slug) => allWork.find((e) => e.slug === slug))
+  .filter((e): e is NonNullable<typeof e> => e !== undefined);
+---
+
+<section class="py-16 md:py-20 border-t border-border">
+  <div class="max-w-content mx-auto px-6">
+    <div class="flex items-center justify-between gap-4 mb-10">
+      <h2 class="font-tight font-medium text-xl text-ink-primary">Featured work</h2>
+      <a
+        href="/portfolio"
+        class="text-sm font-medium text-accent hover:text-accent-dark transition-colors shrink-0"
+      >
+        See all work →
+      </a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {
+        featured.map((entry) => (
+          <WorkCard
+            title={entry.data.title}
+            dimension={entry.data.dimension}
+            hook={entry.data.hook}
+            metric={entry.data.metric}
+            demonstrates={entry.data.demonstrates}
+            href={`/portfolio/${entry.slug}`}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

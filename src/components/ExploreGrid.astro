@@ -1,0 +1,70 @@
+---
+const items = [
+  {
+    label: 'Portfolio',
+    description: 'Six case studies across four disciplines.',
+    href: '/work',
+    external: false,
+  },
+  {
+    label: 'Résumé',
+    description: 'Full work history, credentials, and skills.',
+    href: '/resume',
+    external: false,
+  },
+  {
+    label: 'Cover Letter',
+    description: 'My story in my own words.',
+    href: '/cover-letter',
+    external: false,
+  },
+  {
+    label: 'About',
+    description: 'Career arc, philosophy, and context.',
+    href: '/about',
+    external: false,
+  },
+  {
+    label: 'Teaching',
+    description: "Beginner's Guide to Agile Software Transformation — nearly 5,000 students since 2020.",
+    href: 'https://www.udemy.com/course/beginners-guide-to-agile-software-transformation/?referralCode=0B4C745169156D1463FE',
+    external: true,
+  },
+  {
+    label: 'Contact',
+    description: "Let's talk.",
+    href: '/#contact',
+    external: false,
+  },
+] as const;
+---
+
+<section class="py-16 md:py-20 border-t border-border">
+  <div class="max-w-content mx-auto px-6">
+    <h2 class="font-tight font-medium text-xl text-ink-primary mb-8">Explore</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+      {
+        items.map((item) => (
+          <a
+            href={item.href}
+            target={item.external ? '_blank' : undefined}
+            rel={item.external ? 'noopener noreferrer' : undefined}
+            class="group block p-5 bg-surface rounded-card border border-border hover:border-accent hover:-translate-y-0.5 transition-all duration-200"
+          >
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="font-tight font-medium text-sm text-ink-primary group-hover:text-accent transition-colors">
+                {item.label}
+              </span>
+              {item.external && (
+                <span class="text-ink-secondary text-xs" aria-hidden="true">
+                  ↗
+                </span>
+              )}
+            </div>
+            <p class="text-xs text-ink-secondary leading-relaxed">{item.description}</p>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

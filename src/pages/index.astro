@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import DimensionStrip from '../components/DimensionStrip.astro';
+import FeaturedWork from '../components/FeaturedWork.astro';
+import ExploreGrid from '../components/ExploreGrid.astro';
+---
+
+<BaseLayout
+  title="Home"
+  description="Omar A. Barakat — Technical Product Manager & Agile Coach. 10+ products shipped, 5+ companies transformed, 2 startups cofounded."
+>
+  <Hero />
+
+  <!-- Brief about -->
+  <section class="py-16 border-t border-border">
+    <div class="max-w-content mx-auto px-6">
+      <div class="max-w-2xl border-l-2 border-accent pl-6">
+        <p class="text-lg text-ink-secondary leading-relaxed">
+          10 years across tech, management, and training — 10+ products shipped, 5+ companies
+          transformed, 2 startups cofounded, and a Udemy agile course with nearly 5,000 students.
+          The throughline is systems thinking: I find the system producing an outcome and rebuild it.
+        </p>
+        <a
+          href="/about"
+          class="inline-block mt-4 text-sm font-medium text-accent hover:text-accent-dark transition-colors"
+        >
+          More about me →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <DimensionStrip />
+  <FeaturedWork />
+  <ExploreGrid />
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 md:py-28 border-t border-border">
+    <div class="max-w-content mx-auto px-6">
+      <div class="max-w-reading">
+        <h2 class="font-tight font-medium text-3xl md:text-4xl text-ink-primary mb-4">
+          Get in touch
+        </h2>
+        <p class="text-ink-secondary leading-relaxed mb-8 text-lg">
+          I'm always open to interesting product conversations. Whether you have a role in mind, a
+          product challenge to discuss, or just want to connect — reach out.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="mailto:omarbravotube@gmail.com"
+            class="inline-flex items-center px-6 py-3 bg-accent text-white font-medium rounded-full text-sm hover:bg-accent-dark transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >
+            Email me
+          </a>
+          <a
+            href="https://www.linkedin.com/in/omaraymanbarakat/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-6 py-3 border border-border text-ink-primary font-medium rounded-full text-sm hover:border-ink-secondary transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-primary"
+          >
+            LinkedIn ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

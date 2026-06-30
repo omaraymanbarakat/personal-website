@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const experience = [
+  { role: 'Product Manager / Agile Practitioner', org: 'Wolters Kluwer', when: '2025 – present' },
+  { role: 'Agile Coach → Technical Product Manager', org: 'Aspire Software (Valsoft)', when: '2020 – 2025' },
+  { role: 'Scrum Master / Product Owner → Software Delivery Manager', org: 'Easykash', when: '2019 – 2024' },
+  { role: 'Minority Partner — Scoring-Model Design', org: 'Qasatly (BNPL)', when: 'concurrent' },
+  { role: 'Agile Trainer', org: 'Udemy · Sprints · Omni212', when: '2020' },
+  { role: 'Cofounder', org: 'Eden Studios', when: '2017 – 2018' },
+];
+
+const credentials = [
+  { label: 'IBM AI Product Manager', type: 'cert' },
+  { label: 'ICP-ACC (Agile Coaching)', type: 'cert' },
+  { label: 'PSM I — 98.8%', type: 'cert' },
+];
+
+const dimensions = [
+  {
+    name: 'Build',
+    tagClass: 'bg-dim-build-bg text-dim-build-text',
+    description:
+      'I build products and the systems behind them from scratch. At Easykash, that meant going from whiteboard to certified payment gateway — core engine, infrastructure layer, and PCI-DSS Level 1 certification — processing ~1B EGP across 15,000+ merchants.',
+  },
+  {
+    name: 'Fix',
+    tagClass: 'bg-dim-fix-bg text-dim-fix-text',
+    description:
+      'When something has broken down — a product, a team, a process — I diagnose root cause before moving. At RentAll (Aspire Software), I traced churn not to bugs but to process failures and trust deficits, rebuilt both, and reversed churn to growth within six months.',
+  },
+  {
+    name: 'Design',
+    tagClass: 'bg-dim-design-bg text-dim-design-text',
+    description:
+      'I design for problems with no obvious answer — where data is sparse, the user is underserved, and first-principles thinking is the only tool. At Qasatly, that meant building a credit-scoring model from zero in a market with no credit bureau.',
+  },
+  {
+    name: 'Transform & Teach',
+    tagClass: 'bg-dim-teach-bg text-dim-teach-text',
+    description:
+      'I make organizations systematically better at shipping — through frameworks, enablement playbooks, and teaching at scale. At Aspire Software, I productized how 60 acquired companies worked. On Udemy, I taught the craft to nearly 5,000 students.',
+  },
+] as const;
+---
+
+<BaseLayout
+  title="About"
+  description="Career arc, philosophy, and context — Omar A. Barakat, Technical Product Manager & Agile Coach."
+>
+  <div class="max-w-content mx-auto px-6 py-12 md:py-16">
+    <!-- Page header -->
+    <header class="mb-14">
+      <div class="flex flex-col sm:flex-row sm:items-start sm:gap-10 max-w-reading">
+        <div class="flex-1">
+          <h1 class="font-tight font-medium text-4xl md:text-5xl text-ink-primary mb-4">About</h1>
+          <p class="text-lg text-ink-secondary leading-relaxed">
+            Technical product manager and agile coach with 10 years across tech, management, and
+            training. The throughline is systems thinking — I find the system producing an outcome
+            and rebuild it.
+          </p>
+        </div>
+        <div class="mt-6 sm:mt-1 shrink-0">
+          <img
+            src="/omar-barakat.jpg"
+            alt="Omar A. Barakat"
+            width="128"
+            height="128"
+            class="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover object-top border border-border"
+          />
+        </div>
+      </div>
+    </header>
+
+    <!-- Career narrative -->
+    <section class="mb-14 max-w-reading">
+      <h2 class="font-tight font-medium text-xl text-ink-primary mb-5">Career arc</h2>
+      <div class="space-y-4 text-ink-secondary leading-relaxed">
+        <p>
+          I started in tech support and then as a trainer, cofounded an EHR startup (Eden Studios), and
+          found my calling at the intersection of product and people. A multi-year run at Easykash —
+          where I moved from Scrum Master to Software Delivery Manager on a fintech product I helped
+          build from scratch — showed me what it means to own something end-to-end. Alongside that,
+          I helped Qasatly design a credit-scoring model for borrowers with no credit history, and
+          built a Udemy course on agile transformation now taught to nearly 5,000 students.
+        </p>
+        <p>
+          From 2020, I joined Aspire Software (part of the Valsoft group) as an agile coach and
+          eventually moved into the Technical PM role. Aspire acquires software companies — at peak,
+          around 60 in the portfolio — and my job was to bring consistency to how those companies
+          operated. I productized enablement into templates, trained a specialist team, and rolled it
+          out without formal authority over any of the companies we supported.
+        </p>
+        <p>
+          In 2025 I moved to Wolters Kluwer's Global Business Services unit, where I drive two
+          products: Pegasus and Brainboard.
+        </p>
+      </div>
+    </section>
+
+    <!-- Four dimensions -->
+    <section class="mb-14">
+      <h2 class="font-tight font-medium text-xl text-ink-primary mb-6">What I do</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {
+          dimensions.map((dim) => (
+            <div class="bg-surface border border-border rounded-card p-6">
+              <span
+                class={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium mb-4 ${dim.tagClass}`}
+              >
+                {dim.name}
+              </span>
+              <p class="text-sm text-ink-secondary leading-relaxed">{dim.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="mb-14 max-w-reading">
+      <h2 class="font-tight font-medium text-xl text-ink-primary mb-6">Experience</h2>
+      <p class="text-xs text-ink-secondary mb-4 italic">
+        Timelines overlap — several roles were held concurrently.
+      </p>
+      <div class="divide-y divide-border">
+        {
+          experience.map((item) => (
+            <div class="py-4 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+              <div>
+                <p class="text-sm font-medium text-ink-primary">{item.role}</p>
+                <p class="text-sm text-ink-secondary">{item.org}</p>
+              </div>
+              <p class="text-xs text-ink-secondary shrink-0">{item.when}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Credentials -->
+    <section class="mb-14 max-w-reading">
+      <h2 class="font-tight font-medium text-xl text-ink-primary mb-6">Credentials</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
+        <div>
+          <p class="text-xs text-ink-secondary uppercase tracking-wide mb-3">Certifications</p>
+          <ul class="space-y-1">
+            {credentials.map((c) => (
+              <li class="text-ink-primary">{c.label}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs text-ink-secondary uppercase tracking-wide mb-3">Skills</p>
+          <p class="text-ink-secondary leading-relaxed">
+            Agile transformation · Scrum / Scrumban / Kanban · Business analysis · SQL · Linux
+            shell · Git
+          </p>
+        </div>
+        <div>
+          <p class="text-xs text-ink-secondary uppercase tracking-wide mb-3">Tools</p>
+          <p class="text-ink-secondary leading-relaxed">
+            Jira · Aha! · Azure DevOps · GitHub / Bitbucket · AWS
+          </p>
+        </div>
+        <div>
+          <p class="text-xs text-ink-secondary uppercase tracking-wide mb-3">Languages & Education</p>
+          <p class="text-ink-secondary">English & Arabic</p>
+          <p class="text-ink-secondary mt-1">B.Sc. Computer Science, October 6th University</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTAs -->
+    <div class="flex flex-wrap gap-4 pt-4 border-t border-border max-w-reading">
+      <a
+        href="/portfolio"
+        class="inline-flex items-center px-6 py-3 bg-accent text-white font-medium rounded-full text-sm hover:bg-accent-dark transition-colors"
+      >
+        View my work
+      </a>
+      <a
+        href="/#contact"
+        class="inline-flex items-center px-6 py-3 border border-border text-ink-primary font-medium rounded-full text-sm hover:border-ink-secondary transition-colors"
+      >
+        Get in touch
+      </a>
+    </div>
+  </div>
+</BaseLayout>

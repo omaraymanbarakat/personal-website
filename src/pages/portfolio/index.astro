@@ -1,0 +1,140 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WorkCard from '../../components/WorkCard.astro';
+
+const allWork = await getCollection('work');
+const sortedWork = allWork.sort((a, b) => a.data.order - b.data.order);
+
+type Dimension = 'Build' | 'Fix' | 'Design' | 'Transform & Teach';
+
+const dimensions: Dimension[] = ['Build', 'Fix', 'Design', 'Transform & Teach'];
+
+// Udemy external card — always appears in Transform & Teach
+const udemyCard = {
+  title: "Beginner's Guide to Agile Software Transformation",
+  dimension: 'Transform & Teach' as const,
+  hook: "A self-built crash course teaching software professionals how to move into agile ways of working — the same transformation expertise I bring to teams, packaged for a global, self-serve audience.",
+  metric: 'Nearly 5,000 students since 2020',
+  demonstrates: 'Transformation expertise at scale',
+  href: 'https://www.udemy.com/course/beginners-guide-to-agile-software-transformation/?referralCode=0B4C745169156D1463FE',
+  external: true,
+};
+---
+
+<BaseLayout
+  title="Work"
+  description="Case studies across product building, fixing, designing, and agile coaching."
+>
+  <div class="max-w-content mx-auto px-6 py-12 md:py-16">
+    <header class="mb-12 max-w-reading">
+      <h1 class="font-tight font-medium text-4xl md:text-5xl text-ink-primary mb-4">Work</h1>
+      <p class="text-lg text-ink-secondary leading-relaxed">
+        Six case studies across four dimensions — building products, fixing broken ones, designing
+        data-driven features, and transforming how organizations ship.
+      </p>
+    </header>
+
+    <!-- Dimension filter -->
+    <div class="mb-10" role="tablist" aria-label="Filter by dimension" id="dimension-filter">
+      {
+        (['All', ...dimensions] as const).map((dim, i) => (
+          <button
+            role="tab"
+            aria-selected={i === 0}
+            data-filter={dim}
+            class:list={[
+              'filter-btn mr-2 mb-2 px-4 py-1.5 rounded-full text-sm font-medium transition-colors border',
+              i === 0
+                ? 'bg-ink-primary text-white border-ink-primary'
+                : 'bg-surface text-ink-secondary border-border hover:border-ink-secondary',
+            ]}
+          >
+            {dim}
+          </button>
+        ))
+      }
+    </div>
+
+    <!-- Work grid grouped by dimension -->
+    {
+      dimensions.map((dim) => {
+        const cards = sortedWork.filter((entry) => entry.data.dimension === dim);
+        const showUdemy = dim === 'Transform & Teach';
+
+        if (cards.length === 0 && !showUdemy) return null;
+
+        return (
+          <section class="mb-12" data-dimension-section={dim}>
+            <h2 class="font-tight font-medium text-sm text-ink-secondary uppercase tracking-wide mb-4">
+              {dim}
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id={`grid-${dim.replace(/\s+/g, '-').replace('&', 'and')}`}>
+              {cards.map((entry) => (
+                <WorkCard
+                  title={entry.data.title}
+                  dimension={entry.data.dimension}
+                  hook={entry.data.hook}
+                  metric={entry.data.metric}
+                  demonstrates={entry.data.demonstrates}
+                  href={`/portfolio/${entry.slug}`}
+                />
+              ))}
+              {showUdemy && (
+                <WorkCard
+                  title={udemyCard.title}
+                  dimension={udemyCard.dimension}
+                  hook={udemyCard.hook}
+                  metric={udemyCard.metric}
+                  demonstrates={udemyCard.demonstrates}
+                  href={udemyCard.href}
+                  external={udemyCard.external}
+                />
+              )}
+            </div>
+          </section>
+        );
+      })
+    }
+
+    {
+      sortedWork.length === 0 && (
+        <p class="text-ink-secondary py-8">Case studies coming soon.</p>
+      )
+    }
+  </div>
+</BaseLayout>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const sections = document.querySelectorAll<HTMLElement>('[data-dimension-section]');
+  const cards = document.querySelectorAll<HTMLElement>('[data-dimension]');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter ?? 'All';
+
+      // Update button states
+      filterBtns.forEach((b) => {
+        const active = b.dataset.filter === filter;
+        b.setAttribute('aria-selected', String(active));
+        b.classList.toggle('bg-ink-primary', active);
+        b.classList.toggle('text-white', active);
+        b.classList.toggle('border-ink-primary', active);
+        b.classList.toggle('bg-surface', !active);
+        b.classList.toggle('text-ink-secondary', !active);
+        b.classList.toggle('border-border', !active);
+      });
+
+      if (filter === 'All') {
+        sections.forEach((s) => s.removeAttribute('hidden'));
+        cards.forEach((c) => c.removeAttribute('hidden'));
+      } else {
+        sections.forEach((s) => {
+          const match = s.dataset.dimensionSection === filter;
+          s.toggleAttribute('hidden', !match);
+        });
+      }
+    });
+  });
+</script>

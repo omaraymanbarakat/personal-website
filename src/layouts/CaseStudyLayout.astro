@@ -1,0 +1,171 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+type Dimension = 'Build' | 'Fix' | 'Design' | 'Transform & Teach';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    dimension: Dimension;
+    company: string;
+    companyContext: string;
+    role: string;
+    hook: string;
+    metric: string;
+    demonstrates: string;
+    summary?: { label: string; value: string }[];
+  };
+}
+
+const { frontmatter } = Astro.props;
+
+const dimTag: Record<Dimension, string> = {
+  Build: 'bg-dim-build-bg text-dim-build-text',
+  Fix: 'bg-dim-fix-bg text-dim-fix-text',
+  Design: 'bg-dim-design-bg text-dim-design-text',
+  'Transform & Teach': 'bg-dim-teach-bg text-dim-teach-text',
+};
+---
+
+<BaseLayout title={frontmatter.title} description={frontmatter.hook}>
+  <div class="max-w-content mx-auto px-6 py-12 md:py-16">
+
+    <!-- Back link -->
+    <a
+      href="/portfolio"
+      class="inline-flex items-center gap-1.5 text-sm text-ink-secondary hover:text-accent transition-colors mb-10"
+    >
+      ← All work
+    </a>
+
+    <!-- Page header -->
+    <header class="mb-10 max-w-reading">
+      <span
+        class={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium mb-4 ${dimTag[frontmatter.dimension]}`}
+      >
+        {frontmatter.dimension}
+      </span>
+      <h1
+        class="font-tight font-medium text-3xl md:text-4xl text-ink-primary leading-tight mb-3"
+      >
+        {frontmatter.title}
+      </h1>
+      <p class="text-ink-secondary mb-0.5">{frontmatter.role}</p>
+      <p class="text-sm text-ink-secondary">{frontmatter.companyContext}</p>
+    </header>
+
+    <!-- Two-column body: content + facts sidebar -->
+    <div class="lg:grid lg:grid-cols-[1fr_300px] lg:gap-16 items-start">
+
+      <!-- Main content -->
+      <div id="case-study-body" class="prose prose-slate max-w-none order-2 lg:order-1">
+        <slot />
+      </div>
+
+      <!-- Facts sidebar -->
+      <aside
+        class="order-1 lg:order-2 mb-10 lg:mb-0 lg:sticky lg:top-24 bg-surface border border-border rounded-card p-6"
+      >
+        <h2 class="font-tight font-medium text-xs text-ink-secondary uppercase tracking-wide mb-4">
+          At a glance
+        </h2>
+
+        {frontmatter.summary && frontmatter.summary.length > 0 ? (
+          <dl class="space-y-4 text-sm">
+            {frontmatter.summary.map((row) => (
+              <div>
+                <dt class="text-xs text-ink-secondary uppercase tracking-wide mb-0.5">
+                  {row.label}
+                </dt>
+                <dd class="text-ink-secondary leading-snug">{row.value}</dd>
+              </div>
+            ))}
+            <div class="pt-3 border-t border-border">
+              <dt class="text-xs text-ink-secondary uppercase tracking-wide mb-0.5">Key result</dt>
+              <dd class="text-accent font-medium">{frontmatter.metric}</dd>
+            </div>
+            <div>
+              <dt class="text-xs text-ink-secondary uppercase tracking-wide mb-0.5">Demonstrates</dt>
+              <dd class="text-ink-secondary">{frontmatter.demonstrates}</dd>
+            </div>
+          </dl>
+        ) : (
+          <dl class="space-y-4 text-sm">
+            <div>
+              <dt class="text-xs text-ink-secondary uppercase tracking-wide mb-0.5">Company</dt>
+              <dd class="text-ink-primary font-medium">{frontmatter.company}</dd>
+            </div>
+            <div>
+              <dt class="text-xs text-ink-secondary uppercase tracking-wide mb-0.5">Context</dt>
+              <dd class="text-ink-secondary leading-snug">{frontmatter.companyContext}</dd>
+            </div>
+            <div>
+              <dt class="text-xs text-ink-secondary uppercase tracking-wide mb-0.5">Role</dt>
+              <dd class="text-ink-secondary leading-snug">{frontmatter.role}</dd>
+            </div>
+            <div class="pt-3 border-t border-border">
+              <dt class="text-xs text-ink-secondary uppercase tracking-wide mb-0.5">Key result</dt>
+              <dd class="text-accent font-medium">{frontmatter.metric}</dd>
+            </div>
+            <div>
+              <dt class="text-xs text-ink-secondary uppercase tracking-wide mb-0.5">Demonstrates</dt>
+              <dd class="text-ink-secondary">{frontmatter.demonstrates}</dd>
+            </div>
+          </dl>
+        )}
+      </aside>
+    </div>
+
+    <!-- Page footer nav -->
+    <div class="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <a href="/portfolio" class="text-sm text-ink-secondary hover:text-accent transition-colors">
+        ← All work
+      </a>
+      <a
+        href="/#contact"
+        class="text-sm font-medium text-accent hover:text-accent-dark transition-colors"
+      >
+        Get in touch →
+      </a>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  // Wrap the "What I'd take with me" section in a tinted panel
+  const body = document.getElementById('case-study-body');
+  if (body) {
+    const headings = body.querySelectorAll<HTMLHeadingElement>('h2');
+    headings.forEach((h2) => {
+      if (!h2.textContent?.includes("What I'd take with me")) return;
+
+      const wrapper = document.createElement('div');
+      wrapper.className =
+        'not-prose mt-12 bg-accent-light border border-accent/20 rounded-card p-6 md:p-8';
+
+      h2.parentNode!.insertBefore(wrapper, h2);
+
+      // Move h2 and all following siblings (until next h2 or end) into wrapper
+      const toMove: Element[] = [h2];
+      let sibling = h2.nextElementSibling;
+      while (sibling && sibling.tagName !== 'H2') {
+        toMove.push(sibling);
+        sibling = sibling.nextElementSibling;
+      }
+      toMove.forEach((el) => wrapper.appendChild(el));
+
+      // Restyle heading
+      h2.className = 'font-tight font-medium text-base text-ink-primary mb-4 mt-0';
+
+      // Restyle list items
+      const ul = wrapper.querySelector('ul');
+      if (ul) {
+        ul.className = 'space-y-2 m-0 p-0 list-none';
+        ul.querySelectorAll('li').forEach((li) => {
+          li.className =
+            'text-sm text-ink-secondary leading-relaxed pl-4 relative before:content-["–"] before:absolute before:left-0 before:text-accent';
+        });
+      }
+    });
+  }
+</script>
