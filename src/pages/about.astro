@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import settings from '../data/settings.json';
 
 const experience = [
   { role: 'Product Manager / Agile Practitioner', org: 'Wolters Kluwer', when: '2025 – present' },
@@ -62,7 +63,7 @@ const dimensions = [
         </div>
         <div class="mt-6 sm:mt-1 shrink-0">
           <img
-            src="/omar-barakat.jpg"
+            src={settings.aboutImage}
             alt="Omar A. Barakat"
             width="128"
             height="128"

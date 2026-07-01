@@ -9,6 +9,17 @@ media_folder: public/images
 public_folder: /images
 
 collections:
+  - name: settings
+    label: Site Settings
+    files:
+      - name: site
+        label: Images & Global Settings
+        file: src/data/settings.json
+        format: json
+        fields:
+          - { label: Homepage headshot, name: heroImage, widget: image }
+          - { label: About page headshot, name: aboutImage, widget: image }
+
   - name: work
     label: Case Studies
     folder: src/content/work

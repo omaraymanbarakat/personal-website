@@ -1,4 +1,5 @@
 ---
+import settings from '../data/settings.json';
 const credentials = ['IBM AI PM', 'ICP-ACC', 'PSM I'];
 ---
 
@@ -72,7 +73,7 @@ const credentials = ['IBM AI PM', 'ICP-ACC', 'PSM I'];
       <div class="relative">
         <div class="absolute inset-0 rounded-full scale-110 opacity-15 bg-accent"></div>
         <img
-          src="/omar-barakat.jpg"
+          src={settings.heroImage}
           alt="Omar A. Barakat"
           width="176"
           height="176"
