@@ -11,11 +11,11 @@ public_folder: /images
 collections:
   - name: settings
     label: Site Settings
+    format: json
     files:
       - name: site
         label: Images & Global Settings
         file: src/data/settings.json
-        format: json
         fields:
           - { label: Homepage headshot, name: heroImage, widget: image }
           - { label: About page headshot, name: aboutImage, widget: image }
