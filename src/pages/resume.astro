@@ -1,71 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import resume from '../data/resume.json';
 
-const experience = [
-  {
-    role: 'Product Manager / Agile Practitioner',
-    org: 'Wolters Kluwer (USA)',
-    when: 'Feb 2025 – Present',
-    bullets: [
-      'Driving product direction and delivery process for two Global Business Services products: Pegasus (organizational governance) and Brainboard (AI-driven infrastructure-as-code).',
-    ],
-  },
-  {
-    role: 'Technical Product Manager',
-    org: 'Aspire Software (Valsoft), Canada',
-    when: 'Jan 2023 – Feb 2025',
-    bullets: [
-      'Owned the product vision for two car-rental SaaS products, RentAll and Bluebird Auto Rental Systems.',
-      'Led the RentAll turnaround — rebuilt the delivery system and customer trust to cut churn to zero in ~4 months (then reverse it to growth), and improved high-priority issue turnaround from ~4 weeks to ~3 days.',
-    ],
-  },
-  {
-    role: 'Agile Coach',
-    org: 'Aspire Software (Valsoft), Canada',
-    when: 'Sep 2020 – Jan 2023',
-    bullets: [
-      'Enterprise Jira champion and rotating process-improvement lead across ~60 acquired companies; turned onboarding into reusable templates run by a specialist team I trained.',
-      'Coached cross-border teams (US, Canada, Spain, Sri Lanka, Bulgaria, Egypt) on agile and modern development practices.',
-    ],
-  },
-  {
-    role: 'Software Delivery Manager',
-    org: 'Easykash, Cairo',
-    when: 'May 2021 – Feb 2024',
-    bullets: [
-      'Owned the full development-delivery process as Easykash grew to 15,000+ merchants and ~1B EGP in processed volume.',
-      'Led PCI-DSS Level 1 certification in-house (~3 months) and extracted payments into a dedicated gateway (Easykash Gate), cutting payment issues ~70% in three months.',
-    ],
-  },
-  {
-    role: 'Scrum Master / Product Owner',
-    org: 'Easykash, Cairo',
-    when: 'Mar 2019 – Apr 2021',
-    bullets: [
-      'Delivered Easykash\'s core payments engine from scratch — no-account checkout and one creation flow across many product types — plus 9 further products.',
-      'Designed the consumer credit-scoring model for Qasatly, a concurrent BNPL venture: a self-improving, cohort-versioned approach to cold-start lending in a market with no credit bureau.',
-    ],
-  },
-  {
-    role: 'Agile Trainer',
-    org: 'Udemy · Sprints · Omni212',
-    when: '2020',
-    bullets: [
-      'Built and published a Udemy agile-transformation course (nearly 5,000 students since 2020); prepared bootcamp graduates at Sprints.io and taught Scrum at Omni212.',
-    ],
-  },
-  {
-    role: 'Cofounder',
-    org: 'Eden Studios, Cairo',
-    when: '2017 – 2018',
-    bullets: [
-      'Cofounded a software studio; first product an electronic healthcare record (EHR) for clinics and hospitals.',
-    ],
-  },
-];
-
-const earlier =
-  'English instructor at Berlitz International (learners from 10+ countries, 5 continents); teaching assistant at Ahram Canadian University.';
+const { summary, experience, earlier, certifications, awards, skills, tools, selectedProducts, educationDegree, educationInstitution, languages } = resume;
 ---
 
 <BaseLayout
@@ -113,13 +50,7 @@ const earlier =
     <!-- Summary -->
     <section class="mb-10">
       <h2 class="resume-section-heading">Summary</h2>
-      <p class="text-sm text-ink-secondary leading-relaxed">
-        Technical product manager and agile coach with 10 years across tech, management, and
-        training. I build products and the systems behind them, fix ones that have broken down,
-        design data/AI products, and transform &amp; teach organizations — 10+ products shipped,
-        5+ companies transformed, 2 startups cofounded, and an agile course taken by nearly
-        5,000 students.
-      </p>
+      <p class="text-sm text-ink-secondary leading-relaxed">{summary}</p>
     </section>
 
     <!-- Experience -->
@@ -155,9 +86,7 @@ const earlier =
       <section>
         <h2 class="resume-section-heading">Certifications</h2>
         <ul class="space-y-1 text-sm text-ink-primary">
-          <li>IBM AI Product Manager</li>
-          <li>ICP-ACC (Agile Coaching)</li>
-          <li>PSM I — 98.8%</li>
+          {certifications.map((c) => <li>{c}</li>)}
         </ul>
       </section>
 
@@ -165,46 +94,34 @@ const earlier =
       <section>
         <h2 class="resume-section-heading">Awards</h2>
         <ul class="space-y-1 text-sm text-ink-secondary">
-          <li>Employee of the Month — Sep 2023</li>
-          <li>Excellence Award — 2021</li>
-          <li>Instructor of the Year — 2015</li>
-          <li>2nd Best Instructor — 2016</li>
+          {awards.map((a) => <li>{a}</li>)}
         </ul>
       </section>
 
       <!-- Skills -->
       <section>
         <h2 class="resume-section-heading">Skills</h2>
-        <p class="text-sm text-ink-secondary leading-relaxed">
-          Agile transformation · Scrum / Scrumban / Kanban · product &amp; delivery management ·
-          business analysis · coaching &amp; training · SQL &amp; DB management · Linux shell
-          scripting · Git
-        </p>
+        <p class="text-sm text-ink-secondary leading-relaxed">{skills}</p>
       </section>
 
       <!-- Tools -->
       <section>
         <h2 class="resume-section-heading">Tools</h2>
-        <p class="text-sm text-ink-secondary leading-relaxed">
-          Jira · Aha! · Azure DevOps · Bitbucket / GitHub / GitKraken / ZenHub · Trello · AWS
-        </p>
+        <p class="text-sm text-ink-secondary leading-relaxed">{tools}</p>
       </section>
 
       <!-- Selected products -->
       <section>
         <h2 class="resume-section-heading">Selected products</h2>
-        <p class="text-sm text-ink-secondary leading-relaxed">
-          Easykash (payments &amp; gateway) · Qasatly (BNPL) · RentAll &amp; Rentworks
-          (car rental) · Heaven (e-wallet)
-        </p>
+        <p class="text-sm text-ink-secondary leading-relaxed">{selectedProducts}</p>
       </section>
 
       <!-- Education & Languages -->
       <section>
         <h2 class="resume-section-heading">Education &amp; Languages</h2>
-        <p class="text-sm text-ink-primary font-medium">B.Sc. Computer Science</p>
-        <p class="text-sm text-ink-secondary mb-2">October 6th University, Egypt · 2014 – 2018</p>
-        <p class="text-sm text-ink-secondary">English &amp; Arabic — bilingual</p>
+        <p class="text-sm text-ink-primary font-medium">{educationDegree}</p>
+        <p class="text-sm text-ink-secondary mb-2">{educationInstitution}</p>
+        <p class="text-sm text-ink-secondary">{languages}</p>
       </section>
 
     </div>

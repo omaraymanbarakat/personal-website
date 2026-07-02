@@ -30,6 +30,39 @@ collections:
         fields:
           - { label: Body, name: body, widget: markdown }
 
+      - name: resume
+        label: Résumé
+        file: src/data/resume.json
+        format: json
+        fields:
+          - { label: Summary, name: summary, widget: text }
+          - name: experience
+            label: Experience
+            widget: list
+            fields:
+              - { label: Role, name: role, widget: string }
+              - { label: Organisation, name: org, widget: string }
+              - { label: Period, name: when, widget: string }
+              - name: bullets
+                label: Bullets
+                widget: list
+                field: { label: Bullet, name: bullet, widget: string }
+          - { label: Earlier roles, name: earlier, widget: text }
+          - name: certifications
+            label: Certifications
+            widget: list
+            field: { label: Certification, name: item, widget: string }
+          - name: awards
+            label: Awards
+            widget: list
+            field: { label: Award, name: item, widget: string }
+          - { label: Skills, name: skills, widget: text }
+          - { label: Tools, name: tools, widget: text }
+          - { label: Selected Products, name: selectedProducts, widget: text }
+          - { label: Education — Degree, name: educationDegree, widget: string }
+          - { label: Education — Institution, name: educationInstitution, widget: string }
+          - { label: Languages, name: languages, widget: string }
+
   - name: work
     label: Case Studies
     folder: src/content/work
