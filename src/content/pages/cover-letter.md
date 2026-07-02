@@ -1,7 +1,7 @@
 ---
 title: Cover Letter
 ---
-I've spent ten years learning that almost every product problem is really a systems problem — and that the job is to find the system underneath an outcome and rebuild it. That instinct is the thread through everything I do: building a product from nothing, rescuing one that's failing, designing for a question nobody has answered yet, or helping a whole organization work better.TEST
+I've spent ten years learning that almost every product problem is really a systems problem — and that the job is to find the system underneath an outcome and rebuild it. That instinct is the thread through everything I do: building a product from nothing, rescuing one that's failing, designing for a question nobody has answered yet, or helping a whole organization work better.
 
 My path here wasn't a straight line. I started in technical support, spent four years teaching and training — in classrooms, bootcamps, and an online course taken by thousands — and only then came fully back to product. I used to think of the teaching years as a detour. They turned out to be the opposite. They're why I can take something ambiguous and complex and make it clear and actionable for a team, and why I'm comfortable leading through influence rather than authority. Most of the work I'm proudest of, I didn't have the org chart to command — I had to earn it.
 
@@ -11,4 +11,4 @@ I'm also drawn to messes. When I joined a car-rental product that was hemorrhagi
 
 And I like problems with no obvious answer. Designing a credit-scoring model for a market with almost no formal credit history meant scoring people we knew nothing about, safely, while we learned — a puzzle I found genuinely fun to solve. It's also why the AI side of product pulls at me: I'm comfortable building for uncertainty and letting a system get smarter as the evidence arrives.
 
-What I'm looking for is more of exactly this — product work with real stakes, teams worth earning the trust of, and problems where systems thinking and a teacher's instinct for clarity actually matter. If that sounds like someone you'd want in the room, I'd love to talk.TEST
+What I'm looking for is more of exactly this — product work with real stakes, teams worth earning the trust of, and problems where systems thinking and a teacher's instinct for clarity actually matter. If that sounds like someone you'd want in the room, I'd love to talk.
