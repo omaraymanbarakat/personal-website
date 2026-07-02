@@ -20,6 +20,16 @@ collections:
           - { label: Homepage headshot, name: heroImage, widget: image }
           - { label: About page headshot, name: aboutImage, widget: image }
 
+  - name: pages
+    label: Pages
+    files:
+      - name: cover-letter
+        label: Cover Letter
+        file: src/content/pages/cover-letter.md
+        format: frontmatter
+        fields:
+          - { label: Body, name: body, widget: markdown }
+
   - name: work
     label: Case Studies
     folder: src/content/work

@@ -1,5 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry } from 'astro:content';
+
+const entry = await getEntry('pages', 'cover-letter');
+const { Content } = await entry.render();
 ---
 
 <BaseLayout
@@ -27,63 +31,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </header>
 
     <!-- Letter body -->
-    <div class="space-y-6 text-[1.0625rem] text-ink-secondary leading-[1.8]">
-
-      <p>
-        I've spent ten years learning that almost every product problem is really a systems problem
-        — and that the job is to find the system underneath an outcome and rebuild it. That instinct
-        is the thread through everything I do: building a product from nothing, rescuing one that's
-        failing, designing for a question nobody has answered yet, or helping a whole organization
-        work better.
-      </p>
-
-      <p>
-        My path here wasn't a straight line. I started in technical support, spent four years
-        teaching and training — in classrooms, bootcamps, and an online course taken by thousands
-        — and only then came fully back to product. I used to think of the teaching years as a
-        detour. They turned out to be the opposite. They're why I can take something ambiguous and
-        complex and make it clear and actionable for a team, and why I'm comfortable leading
-        through influence rather than authority. Most of the work I'm proudest of, I didn't have
-        the org chart to command — I had to earn it.
-      </p>
-
-      <p>
-        Building is where I'm happiest. Helping take a payments platform from an idea to a licensed
-        gateway serving tens of thousands of merchants is the kind of arc most people never get to
-        live. The part I remember most isn't a number, though — it's standing at a kiosk during the
-        COVID lockdown, masked, running the first live cash transactions myself because that flow
-        simply couldn't be tested from a laptop, with the whole team on a call watching the money
-        move. That's the ownership I bring to launches that matter. The same stretch taught me that
-        constraints can be generative: leading a top-tier payment-security certification in-house,
-        with no outside consultants, didn't just satisfy an auditor — the discipline it forced made
-        the entire engineering team faster.
-      </p>
-
-      <p>
-        I'm also drawn to messes. When I joined a car-rental product that was hemorrhaging
-        customers, the easy read was "fix the bugs." The real problem was that the systems producing
-        the bugs — and the trust those failures had destroyed — were both broken, and you had to
-        rebuild both at once. Doing that without managing the team directly is some of the work I'm
-        proudest of. Later, standardizing how dozens of newly acquired companies worked taught me
-        the most useful lesson of all: the best version of fixing something is making yourself
-        unnecessary — turning what you do into templates and people who can run it without you.
-      </p>
-
-      <p>
-        And I like problems with no obvious answer. Designing a credit-scoring model for a market
-        with almost no formal credit history meant scoring people we knew nothing about, safely,
-        while we learned — a puzzle I found genuinely fun to solve. It's also why the AI side of
-        product pulls at me: I'm comfortable building for uncertainty and letting a system get
-        smarter as the evidence arrives.
-      </p>
-
-      <p>
-        What I'm looking for is more of exactly this — product work with real stakes, teams worth
-        earning the trust of, and problems where systems thinking and a teacher's instinct for
-        clarity actually matter. If that sounds like someone you'd want in the room, I'd love to
-        talk.
-      </p>
-
+    <div class="prose-cover-letter">
+      <Content />
     </div>
 
     <!-- Signature -->
@@ -127,6 +76,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
+  .prose-cover-letter :global(p) {
+    font-size: 1.0625rem;
+    color: var(--color-ink-secondary, #5A5A57);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+  .prose-cover-letter :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
   @media print {
     :global(header),
     :global(footer) {

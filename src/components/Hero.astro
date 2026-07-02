@@ -1,6 +1,10 @@
 ---
 import settings from '../data/settings.json';
-const credentials = ['IBM AI PM', 'ICP-ACC', 'PSM I'];
+const credentials = [
+  { label: 'IBM AI PM', url: 'https://www.coursera.org/account/accomplishments/specialization/5QLR5TY01FRS' },
+  { label: 'ICP-ACC',   url: 'https://www.icagile.com/credentials/c4ea589b-dbba-46d0-ad09-4bebdfea808b' },
+  { label: 'PSM I',     url: 'https://scrum.org/certificates/459963' },
+];
 ---
 
 <section class="pt-24 pb-20 md:pt-32 md:pb-28 max-w-content mx-auto px-6">
@@ -29,24 +33,30 @@ const credentials = ['IBM AI PM', 'ICP-ACC', 'PSM I'];
         class="flex flex-wrap items-center gap-x-3 gap-y-1 mb-8"
         aria-label="Core disciplines"
       >
-        <span class="font-tight font-medium text-ink-primary text-base md:text-lg">Build</span>
+        <a href="#featured-work" class="font-tight font-medium text-ink-primary text-base md:text-lg hover:text-accent transition-colors">Build</a>
         <span class="text-border select-none" aria-hidden="true">·</span>
-        <span class="font-tight font-medium text-ink-primary text-base md:text-lg">Fix</span>
+        <a href="#featured-work" class="font-tight font-medium text-ink-primary text-base md:text-lg hover:text-accent transition-colors">Fix</a>
         <span class="text-border select-none" aria-hidden="true">·</span>
-        <span class="font-tight font-medium text-ink-primary text-base md:text-lg">Design</span>
+        <a href="#featured-work" class="font-tight font-medium text-ink-primary text-base md:text-lg hover:text-accent transition-colors">Design</a>
         <span class="text-border select-none" aria-hidden="true">·</span>
-        <span class="font-tight font-medium text-ink-primary text-base md:text-lg"
-          >Transform & Teach</span
-        >
+        <a href="#featured-work" class="font-tight font-medium text-ink-primary text-base md:text-lg hover:text-accent transition-colors">Transform & Teach</a>
       </div>
 
       <!-- Credential strip -->
       <div class="flex flex-wrap gap-2 mb-10">
         {
           credentials.map((cred) => (
-            <span class="inline-block px-3 py-1 bg-accent-light text-accent text-xs font-medium rounded-full">
-              {cred}
-            </span>
+            <a
+              href={cred.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group relative inline-block px-3 py-1 bg-accent-light text-accent text-xs font-medium rounded-full hover:bg-accent hover:text-white transition-colors"
+            >
+              {cred.label}
+              <span class="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-ink-primary px-2 py-1 text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                View Credential
+              </span>
+            </a>
           ))
         }
       </div>

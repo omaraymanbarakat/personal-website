@@ -19,4 +19,11 @@ const work = defineCollection({
   }),
 });
 
-export const collections = { work };
+const pages = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+  }),
+});
+
+export const collections = { work, pages };
