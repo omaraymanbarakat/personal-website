@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#8B3A1A"/>
-  <text x="32" y="32" dominant-baseline="central" text-anchor="middle"
+  <circle cx="32" cy="32" r="32" fill="#8B3A1A"/>
+  <text x="32" y="32" dominant-baseline="central" text-anchor="middle" dy="-0.08em"
     font-family="Inter Tight, Inter, system-ui, sans-serif"
-    font-size="22" font-weight="500" fill="white" letter-spacing="-0.5">OB</text>
+    font-size="42" font-weight="700" fill="white">O</text>
 </svg>

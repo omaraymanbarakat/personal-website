@@ -3,6 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import resume from '../data/resume.json';
 
 const { summary, experience, earlier, certifications, awards, skills, tools, selectedProducts, educationDegree, educationInstitution, languages } = resume;
+
+const credentialUrls: Record<string, string> = {
+  'IBM AI Product Manager': 'https://www.coursera.org/account/accomplishments/specialization/5QLR5TY01FRS',
+  'ICP-ACC (Agile Coaching)': 'https://www.icagile.com/credentials/c4ea589b-dbba-46d0-ad09-4bebdfea808b',
+  'PSM I — 98.8%': 'https://scrum.org/certificates/459963',
+};
 ---
 
 <BaseLayout
@@ -19,7 +25,11 @@ const { summary, experience, earlier, certifications, awards, skills, tools, sel
         </h1>
         <p class="text-ink-secondary text-base mb-1">Technical Product Manager · Agile Coach</p>
         <p class="text-xs text-ink-secondary">
-          IBM AI Product Manager · ICP-ACC · PSM I (98.8%)
+          <a href="https://www.coursera.org/account/accomplishments/specialization/5QLR5TY01FRS" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors underline underline-offset-2 decoration-border hover:decoration-accent">IBM AI Product Manager</a>
+          ·
+          <a href="https://www.icagile.com/credentials/c4ea589b-dbba-46d0-ad09-4bebdfea808b" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors underline underline-offset-2 decoration-border hover:decoration-accent">ICP-ACC</a>
+          ·
+          <a href="https://scrum.org/certificates/459963" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors underline underline-offset-2 decoration-border hover:decoration-accent">PSM I (98.8%)</a>
         </p>
         <p class="text-sm text-ink-secondary mt-2">
           Cairo, Egypt ·
@@ -86,7 +96,20 @@ const { summary, experience, earlier, certifications, awards, skills, tools, sel
       <section>
         <h2 class="resume-section-heading">Certifications</h2>
         <ul class="space-y-1 text-sm text-ink-primary">
-          {certifications.map((c) => <li>{c}</li>)}
+          {certifications.map((c) => (
+            <li>
+              {credentialUrls[c] ? (
+                <a
+                  href={credentialUrls[c]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:text-accent transition-colors underline underline-offset-2 decoration-border hover:decoration-accent"
+                >
+                  {c}
+                </a>
+              ) : c}
+            </li>
+          ))}
         </ul>
       </section>
 
