@@ -30,16 +30,22 @@ const credentials = [
 
       <!-- Four-verb tagline -->
       <div
-        class="flex flex-wrap items-center gap-x-3 gap-y-1 mb-8"
+        class="flex flex-wrap gap-2 mb-8"
         aria-label="Core disciplines"
       >
-        <a href="#featured-work" class="font-tight font-medium text-ink-primary text-base md:text-lg hover:text-accent transition-colors">Build</a>
-        <span class="text-border select-none" aria-hidden="true">·</span>
-        <a href="#featured-work" class="font-tight font-medium text-ink-primary text-base md:text-lg hover:text-accent transition-colors">Fix</a>
-        <span class="text-border select-none" aria-hidden="true">·</span>
-        <a href="#featured-work" class="font-tight font-medium text-ink-primary text-base md:text-lg hover:text-accent transition-colors">Design</a>
-        <span class="text-border select-none" aria-hidden="true">·</span>
-        <a href="#featured-work" class="font-tight font-medium text-ink-primary text-base md:text-lg hover:text-accent transition-colors">Transform & Teach</a>
+        {[
+          { label: 'Build',              href: '/portfolio?dimension=Build' },
+          { label: 'Fix',               href: '/portfolio?dimension=Fix' },
+          { label: 'Design',            href: '/portfolio?dimension=Design' },
+          { label: 'Transform & Teach', href: '/portfolio?dimension=Transform%20%26%20Teach' },
+        ].map(({ label, href }) => (
+          <a
+            href={href}
+            class="font-tight font-medium text-sm text-ink-primary inline-flex items-center px-3 py-1.5 rounded-full border border-border hover:border-accent hover:bg-accent-light hover:text-accent active:bg-accent active:text-white active:border-accent transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >
+            {label}
+          </a>
+        ))}
       </div>
 
       <!-- Credential strip -->
