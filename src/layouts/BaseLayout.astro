@@ -1,6 +1,7 @@
 ---
 import SiteNav from '../components/SiteNav.astro';
 import Footer from '../components/Footer.astro';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title: string;
@@ -91,5 +92,6 @@ const ogImageUrl   = new URL('/og.png', Astro.site).href;
         history.replaceState(null, '', window.location.pathname);
       });
     </script>
+    <Analytics />
   </body>
 </html>
